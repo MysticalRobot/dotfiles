@@ -47,7 +47,13 @@ kinda look cool, but i can also use vim-like bindings to change windows
 - i use skhd to give myself the ability to change windows in yabai with vim like 
 commands
 
-### honorable mentions
+## opencode
+
+- i use opencode to interact with agentic models in neovim and the terminal 
+
+--- 
+
+## honorable mentions
 
 while not in this directory, but in my zsh configuration, i use eza and zoxide 
 as nicer alternatives to ls and cd respectively, and i use vimium in my 
