@@ -1,0 +1,16 @@
+[general]
+import = [ "~/.config/alacritty/themes/themes/gruvbox_dark.toml" ]
+
+[window]
+decorations = "Buttonless" # "Full" | "None" | "Transparent" | "Buttonless"
+padding = { x = 6, y = 6 }
+dynamic_padding = true
+# opacity = 0.875
+# blur = true
+
+[font]
+normal.family = "MesloLGS Nerd Font Mono"
+size = 13 
+
+[mouse]
+hide_when_typing = true

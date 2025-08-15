@@ -1,0 +1,26 @@
+# change window focus within space
+cmd - j : yabai -m window --focus south
+cmd - k : yabai -m window --focus north
+cmd - h : yabai -m window --focus west
+cmd - l : yabai -m window --focus east
+
+# flip along axes 
+ctrl + cmd - y : yabai -m space --mirror y-axis
+ctrl + cmd - x : yabai -m space --mirror x-axis
+
+# toggle a window's fullscreen
+ctrl + cmd - m : yabai -m window --toggle zoom-fullscreen
+
+# move window to prev and next space
+ctrl + cmd - p : yabai -m window --space prev;
+ctrl + cmd - n : yabai -m window --space next;
+
+# move window to space #
+ctrl + cmd - 1 : yabai -m window --space 1;
+ctrl + cmd - 2 : yabai -m window --space 2;
+ctrl + cmd - 3 : yabai -m window --space 3;
+
+# stop/start/restart yabai
+ctrl + cmd - q : yabai --stop-service
+ctrl + cmd - s : yabai --start-service
+ctrl + cmd - r : yabai --restart-service
