@@ -1,6 +1,6 @@
 # dotfiles
 
-configurations for the some of the applications i use in 
+configurations for some of the applications i use in 
 my macOS setup. \
 currently, everything with a gui of its own is using the gruvbox theme
 
