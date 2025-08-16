@@ -85,10 +85,12 @@ vim.keymap.set('n', '<leader>s', ':Telescope find_files<CR>', { desc = 'search f
 vim.keymap.set('n', '<leader>g', ':Telescope live_grep<CR>', { desc = 'ripgrep in pwd' })
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>', { desc = 'search recent buffers' })
 vim.keymap.set('n', '<leader>h', ':Telescope help_tags<CR>', { desc = 'search help' })
+vim.keymap.set('n', '<leader>ot', function() require('opencode').toggle() end, { desc = 'toggle opencode embedding' })
 vim.keymap.set('n', '<leader>oa', function() require('opencode').ask() end, { desc = 'ask opencode' })
 vim.keymap.set('v', '<leader>oa', function() require('opencode').ask('@selection: ') end,
   { desc = 'ask opencode about selection' })
 vim.keymap.set('n', '<leader>op', function() require('opencode').select_prompt() end, { desc = 'select opencode prompt' })
+vim.keymap.set('n', '<leader>at', ':Gemini toggle<CR>', { desc = 'toggle gemini-cli embedding' })
 vim.keymap.set('n', '<leader>ag', ':Gemini ask<CR>', { desc = 'ask gemini-cli' })
 vim.keymap.set('v', '<leader>ag', ':Gemini ask<CR>', { desc = 'ask gemini-cli about selection' })
 -- disable s so that mini.surround can use s
