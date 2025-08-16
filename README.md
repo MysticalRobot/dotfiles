@@ -49,7 +49,12 @@ commands
 
 ## opencode
 
-- i use opencode to interact with agentic models in neovim and the terminal 
+- i use opencode to interact with agentic models in neovim and the terminal when i 
+reach my limits for gemini-cli
+
+## gemini-cli 
+
+- i use gemini-cli to interact with google gemini models in neovim and the terminal 
 
 --- 
 

@@ -19,7 +19,6 @@ vim.o.expandtab = true               -- use spaces for indentation
 vim.o.shiftwidth = 2                 -- use 2 spaces for indentation
 vim.o.tabstop = 2                    -- insert 2 spaces by hitting tab
 vim.o.confirm = true                 -- raise a dialog to confirm the handling of unsaved changes
-vim.g.loaded_netrwPlugin = 1         -- disable netrw since yazi is begin used
 vim.cmd(':hi statusline guibg=NONE') -- remove the background the status line
 
 -- [[ plugins ]]
@@ -47,6 +46,11 @@ vim.pack.add({
   { src = 'https://github.com/mikavilpas/yazi.nvim' },
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
   { src = 'https://github.com/folke/snacks.nvim' },
+  -- netrw replacement (another file explorer)
+  { src = 'https://github.com/stevearc/oil.nvim' },
+  -- terminal agentic ai integration
+  { src = 'https://github.com/NickvanDyke/opencode.nvim' },
+  { src = 'https://github.com/marcinjahn/gemini-cli.nvim' }
 })
 -- plugin configurations
 require('blink.cmp').setup({
@@ -71,6 +75,8 @@ vim.cmd('colorscheme gruvbox')
 require('which-key').setup({ preset = 'helix' })
 require('mini.surround').setup()
 require('yazi').setup()
+require('oil').setup()
+require('opencode').setup()
 
 -- [[ keymaps ]]
 -- plugin mappings
@@ -79,6 +85,14 @@ vim.keymap.set('n', '<leader>s', ':Telescope find_files<CR>', { desc = 'search f
 vim.keymap.set('n', '<leader>g', ':Telescope live_grep<CR>', { desc = 'ripgrep in pwd' })
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>', { desc = 'search recent buffers' })
 vim.keymap.set('n', '<leader>h', ':Telescope help_tags<CR>', { desc = 'search help' })
+vim.keymap.set('n', '<leader>ot', function() require('opencode').toggle() end, { desc = 'toggle opencode embedding' })
+vim.keymap.set('n', '<leader>oa', function() require('opencode').ask() end, { desc = 'ask opencode' })
+vim.keymap.set('v', '<leader>oa', function() require('opencode').ask('@selection: ') end,
+  { desc = 'ask opencode about selection' })
+vim.keymap.set('n', '<leader>op', function() require('opencode').select_prompt() end, { desc = 'select opencode prompt' })
+vim.keymap.set('n', '<leader>at', ':Gemini toggle<CR>', { desc = 'toggle gemini-cli embedding' })
+vim.keymap.set('n', '<leader>ag', ':Gemini ask<CR>', { desc = 'ask gemini-cli' })
+vim.keymap.set('v', '<leader>ag', ':Gemini ask<CR>', { desc = 'ask gemini-cli about selection' })
 -- disable s so that mini.surround can use s
 vim.api.nvim_set_keymap('n', 's', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', 's', '<Nop>', { noremap = true, silent = true })
