@@ -4,12 +4,15 @@ cmd - k : yabai -m window --focus north
 cmd - h : yabai -m window --focus west
 cmd - l : yabai -m window --focus east
 
+# rotate layout clockwise
+ctrl + cmd - r : yabai -m space --rotate 270
+
 # flip along axes 
 ctrl + cmd - y : yabai -m space --mirror y-axis
 ctrl + cmd - x : yabai -m space --mirror x-axis
 
-# toggle a window's fullscreen
-ctrl + cmd - m : yabai -m window --toggle zoom-fullscreen
+# maximize a window
+ctrl + cmd - f : yabai -m window --toggle zoom-fullscreen
 
 # move window to prev and next space
 ctrl + cmd - p : yabai -m window --space prev;
@@ -23,4 +26,3 @@ ctrl + cmd - 3 : yabai -m window --space 3;
 # stop/start/restart yabai
 ctrl + cmd - q : yabai --stop-service
 ctrl + cmd - s : yabai --start-service
-ctrl + cmd - r : yabai --restart-service
