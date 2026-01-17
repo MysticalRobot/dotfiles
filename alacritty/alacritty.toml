@@ -1,5 +1,10 @@
 [general]
-import = [ "~/.config/alacritty/themes/themes/gruvbox_dark.toml" ]
+import = [
+    "~/.config/alacritty/themes/themes/everforest_dark.toml"
+]
+
+[env]
+term = "xterm-256color"
 
 [window]
 decorations = "Buttonless" # "Full" | "None" | "Transparent" | "Buttonless"
@@ -9,7 +14,7 @@ dynamic_padding = true
 # blur = true
 
 [font]
-normal.family = "MesloLGS Nerd Font Mono"
+normal.family = "JetBrainsMono Nerd Font"
 size = 13 
 
 [mouse]

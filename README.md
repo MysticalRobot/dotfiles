@@ -2,20 +2,13 @@
 
 configurations for some of the applications i use in 
 my macOS setup. \
-currently, everything with a gui of its own is using the gruvbox theme
+currently, everything with a gui of its own is using the everforest theme
 
 
 ## alacritty
 
 - i use alacritty instead of the default terminal because it allows for more 
 customization 
-
-## yazi
-
-- i use yazi as a terminal based file explorer, and i have it integrated with 
-neovim
-- i gravitated towards it because you can traverse directories with vim keybinds
-- i haven't really configured anything besides the theme
 
 ## nvim
 
@@ -49,17 +42,12 @@ commands
 
 ## opencode
 
-- i use opencode to interact with agentic models in neovim and the terminal when i 
-reach my limits for gemini-cli
-
-## gemini-cli 
-
-- i use gemini-cli to interact with google gemini models in neovim and the terminal 
+- i use opencode to interact with agentic models in neovim and the terminal 
 
 --- 
 
 ## honorable mentions
 
-while not in this directory, but in my zsh configuration, i use eza and zoxide 
-as nicer alternatives to ls and cd respectively, and i use vimium in my 
-browser to ingrain vim movements into my soul
+while not in this directory, but in my zsh configuration, i use eza as an alternative 
+to ls, zoxide when i'm too lazy to cd all over the place,
+and vimium in my browser to ingrain vim movements into my soul
