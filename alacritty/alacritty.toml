@@ -7,7 +7,7 @@ import = [
 term = "xterm-256color"
 
 [window]
-decorations = "Buttonless" # "Full" | "None" | "Transparent" | "Buttonless"
+decorations = "None" # "Full" | "None" 
 padding = { x = 6, y = 6 }
 dynamic_padding = true
 # opacity = 0.875
@@ -15,7 +15,7 @@ dynamic_padding = true
 
 [font]
 normal.family = "JetBrainsMono Nerd Font"
-size = 13 
+size = 11
 
 [mouse]
 hide_when_typing = true

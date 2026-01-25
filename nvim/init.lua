@@ -21,6 +21,7 @@ vim.o.tabstop = 2               -- insert 2 spaces by hitting tab
 vim.o.confirm = true            -- raise a dialog to confirm the handling of unsaved changes
 vim.o.termguicolors = true      -- use true colors
 
+
 -- [[ plugins ]]
 vim.pack.add{
   -- directory of language server quickstart configurations
@@ -43,8 +44,6 @@ vim.pack.add{
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
   -- netrw replacement (another file explorer)
   { src = 'https://github.com/stevearc/oil.nvim' },
-  -- java language server helper
-  { src = 'https://github.com/mfussenegger/nvim-jdtls' },
   -- terminal agentic ai integration
   { src = 'https://github.com/NickvanDyke/opencode.nvim' },
   { src = 'https://github.com/folke/snacks.nvim' },
@@ -53,6 +52,8 @@ vim.pack.add{
   -- simplifies the editing of surrounding tags (", ', [, {, <div>, etc)
   { src = 'https://github.com/tpope/vim-surround' },
 }
+
+
 -- plugin configurations
 require('blink.cmp').setup({
   fuzzy = {
@@ -122,85 +123,9 @@ require('gitsigns').setup({
 })
 require('which-key').setup({ preset = 'helix' })
 require('oil').setup()
-require('opencode').setup()
+-- require('opencode').setup()
 require('ibl').setup()
 
--- need to edit everything marked with to use this 💀
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'java',
-  callback = function()
-    local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-    -- 💀
-    local workspace_dir = "/Users/dhruvchavan/jdtls-data" .. project_name
-    local config = {
-      -- The command that starts the language server
-      -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
-      cmd = {
-
-        -- 💀
-        "/Users/dhruvchavan/.sdkman/candidates/java/current/bin/java", -- or '/path/to/java17_or_newer/bin/java'
-        -- depends on if `java` is in your $PATH env variable and if it points to the right version.
-
-        "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-        "-Dosgi.bundles.defaultStartLevel=4",
-        "-Declipse.product=org.eclipse.jdt.ls.core.product",
-        "-Dlog.protocol=true",
-        "-Dlog.level=ALL",
-        "-Xmx1g",
-        "--add-modules=ALL-SYSTEM",
-        "--add-opens",
-        "java.base/java.util=ALL-UNNAMED",
-        "--add-opens",
-        "java.base/java.lang=ALL-UNNAMED",
-
-        -- 💀
-        "-jar",
-        "/Users/dhruvchavan/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
-        -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
-        -- Must point to the                                                     Change this to
-        -- eclipse.jdt.ls installation                                           the actual version
-
-        -- 💀
-        "-configuration",
-        "/Users/dhruvchavan/jdtls/config_mac/",
-        -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
-        -- Must point to the                      Change to one of `linux`, `win` or `mac`
-        -- eclipse.jdt.ls installation            Depending on your system.
-
-        -- 💀
-        -- See `data directory configuration` section in the README
-        "-data",
-        workspace_dir,
-      },
-
-      -- 💀
-      -- This is the default if not provided, you can remove it. Or adjust as needed.
-      -- One dedicated LSP server & client will be started per unique root_dir
-      root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew" }),
-
-      -- Here you can configure eclipse.jdt.ls specific settings
-      -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-      -- for a list of options
-      settings = {
-        java = {},
-      },
-
-      -- Language server `initializationOptions`
-      -- You need to extend the `bundles` with paths to jar files
-      -- if you want to use additional eclipse.jdt.ls plugins.
-      --
-      -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-      --
-      -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
-      init_options = {
-        bundles = {},
-      },
-    }
-    -- This starts a new client & server,
-    -- or attaches to an existing client & server depending on the `root_dir`.
-    require("jdtls").start_or_attach(config)
-  end
-})
 
 -- [[ keymaps ]]
 -- plugin mappings
@@ -213,6 +138,7 @@ vim.keymap.set('n', '<leader>to', function() require('opencode').toggle() end, {
 vim.keymap.set('n', '<leader>ao', function() require('opencode').ask() end, { desc = 'ask opencode' })
 vim.keymap.set('v', '<leader>ao', function() require('opencode').ask('@selection: ') end, { desc = 'ask opencode about selection' })
 vim.keymap.set('n', '<leader>po', function() require('opencode').select_prompt() end, { desc = 'select opencode prompt' })
+
 -- diagnostic and lsp mappings
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'open diagnostic quickfix list' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open diagnostic' })
@@ -221,23 +147,28 @@ vim.keymap.set('n', '<leader>vd', vim.lsp.buf.hover, { desc = 'view details' })
 vim.keymap.set('n', '<leader>vt', vim.lsp.buf.type_definition, { desc = 'view type' })
 vim.keymap.set('n', '<leader>vt', vim.lsp.buf.type_definition, { desc = 'view type' })
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = 'format buffer' })
+
 -- centered screen scrolling
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'scroll half page down and center' })
 vim.keymap.set('n', '<C-f>', '<C-f>zz', { desc = 'scroll full page down and center' })
 vim.keymap.set('n', '<C-b>', '<C-b>zz', { desc = 'scroll full page up and center' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'scroll half page up and center' })
+
 -- better start/end of line navigation
 vim.keymap.set('n', 'gs', '^', { desc = 'goto start of line' })
 vim.keymap.set('v', 'gs', '^', { desc = 'goto start of line' })
 vim.keymap.set('n', 'ge', '$', { desc = 'goto end of line' })
 vim.keymap.set('v', 'ge', '$', { desc = 'goto end of line' })
+
 -- ensure ctrl-[ does everything that esc does
 vim.keymap.set('n', '<C-[>', '<cmd>nohlsearch<CR>', { desc = 'clear search highlight' })
+
 -- diable arrow keys in normal mode
 vim.api.nvim_set_keymap('n', '<Up>', '<Nop>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<Down>', '<Nop>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<Left>', '<Nop>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<Right>', '<Nop>', { silent = true, noremap = true })
+
 -- highlight copied text
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -254,6 +185,5 @@ vim.lsp.enable({
   'pyright',
   'html',
   'cssls',
-  'jdtls',
   'rust_analyzer',
 })
